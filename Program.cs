@@ -18,10 +18,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// 🛠 Настраиваем Kestrel перед builder.Build()
 builder.WebHost.ConfigureKestrel(options =>
 {
-    options.ListenAnyIP(8080); // HTTP-порт
+    options.ListenAnyIP(8080); 
 });
 
 var app = builder.Build();
