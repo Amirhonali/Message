@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+environment:
+  - ASPNETCORE_URLS=http://+:8080
+  - DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
+  app:
+    build: .
+    container_name: message_service
+    depends_on:
+      - db
+    environment:
+      - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=message_db;Username=postgres;Password=4554
+    ports:
+      - "8080:8080"
+    restart: always
+
+  db:
+    image: postgres:15
+    container_name: message_db
+    restart: always
+    environment:
+      POSTGRES_DB: message_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+volumes:
+  pg_data:
+
