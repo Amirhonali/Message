@@ -21,4 +21,3 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Message.dll"]
 
-# Копируем сертификаты в контейнер
